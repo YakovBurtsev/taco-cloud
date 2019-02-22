@@ -1,6 +1,5 @@
 package tacos.web;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-@Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -44,7 +42,7 @@ public class DesignTacoController {
         return new Order();
     }
 
-    @ModelAttribute(name = "design")
+    @ModelAttribute(name = "taco")
     public Taco taco() {
         return new Taco();
     }
@@ -60,22 +58,23 @@ public class DesignTacoController {
         }
     }
 
-    @GetMapping
-    public String showDesignForm(Model model) {
-        return "design";
-    }
-
     private static List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
         return ingredients
                 .stream()
-                .filter(x -> x.getType().equals(type))
+                .filter(ingredient -> ingredient.getType().equals(type))
                 .collect(toList());
+    }
+
+    @GetMapping
+    public String showDesignForm() {
+        return "design";
     }
 
     @PostMapping
     public String processDesign(@Valid Taco design,
                                 Errors errors,
                                 @ModelAttribute Order order) {
+
         if (errors.hasErrors()) {
             return "design";
         }
