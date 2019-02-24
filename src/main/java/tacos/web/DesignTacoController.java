@@ -71,7 +71,7 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(@Valid Taco design,
+    public String processDesign(@Valid Taco taco,
                                 Errors errors,
                                 @ModelAttribute Order order) {
 
@@ -79,7 +79,7 @@ public class DesignTacoController {
             return "design";
         }
 
-        Taco saved = designRepo.save(design);
+        Taco saved = designRepo.save(taco);
         order.addDesign(saved);
 
         return "redirect:/orders/current";
