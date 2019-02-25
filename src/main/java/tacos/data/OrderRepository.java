@@ -1,9 +1,8 @@
 package tacos.data;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import tacos.Order;
 
-public interface OrderRepository {
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-  Order save(Order order);
-  
 }
