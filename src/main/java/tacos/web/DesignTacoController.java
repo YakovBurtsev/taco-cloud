@@ -1,7 +1,6 @@
 package tacos.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -10,11 +9,12 @@ import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Order;
 import tacos.Taco;
-import tacos.User;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
+import tacos.data.UserRepository;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -28,10 +28,15 @@ public class DesignTacoController {
 
     private final TacoRepository designRepo;
 
+    private final UserRepository userRepository;
+
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepo, TacoRepository designRepo) {
+    public DesignTacoController(IngredientRepository ingredientRepo,
+                                TacoRepository designRepo,
+                                UserRepository userRepository) {
         this.ingredientRepo = ingredientRepo;
         this.designRepo = designRepo;
+        this.userRepository = userRepository;
     }
 
     @ModelAttribute(name = "order")
@@ -45,7 +50,7 @@ public class DesignTacoController {
     }
 
     @ModelAttribute
-    public void addAttributesToModel(Model model, @AuthenticationPrincipal User user) {
+    public void addAttributesToModel(Model model, Principal principal) {
         List<Ingredient> ingredients = ingredientRepo.findAll();
 
         Type[] types = Ingredient.Type.values();
@@ -53,7 +58,7 @@ public class DesignTacoController {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
 
-        model.addAttribute("user", user);
+        model.addAttribute("user", userRepository.findByUsername(principal.getName()));
     }
 
     private static List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
