@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import tacos.Ingredient;
 import tacos.data.IngredientRepository;
 
+import javax.persistence.EntityNotFoundException;
+
 @Component
 public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
@@ -18,7 +20,7 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
 
     @Override
     public Ingredient convert(String id) {
-        return ingredientRepo.getOne(id);
+        return ingredientRepo.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
 }
