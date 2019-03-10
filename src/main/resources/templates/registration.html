@@ -10,16 +10,19 @@
 <h1>Register</h1>
 <img th:src="@{/images/TacoCloud.png}"/>
 
-<form method="POST" th:action="@{/register}" id="registerForm">
+<form method="POST" th:object="${registrationForm}" th:action="@{/register}" id="registerForm">
 
     <label for="username">Username: </label>
     <input type="text" id="username" name="username"/>
     <span class="validationError"
-          th:if="${not_unique_username}">User with such name already exist!</span>
-    <br/>
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">Username Error</span><br/>
 
     <label for="password">Password: </label>
-    <input type="password" id="password" name="password"/><br/>
+    <input type="password" id="password" name="password"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Password Error</span><br/>
 
     <label for="confirm">Confirm password: </label>
     <input type="password" id="confirm" name="confirm"/><br/>
@@ -28,19 +31,36 @@
     <input type="text" id="fullname" name="fullname"/><br/>
 
     <label for="street">Street: </label>
-    <input type="text" id="street" name="street"/><br/>
+    <input type="text" id="street" name="street"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('street')}"
+          th:errors="*{street}">Street Error</span><br/>
 
     <label for="city">City: </label>
-    <input type="text" id="city" name="city"/><br/>
+    <input type="text" id="city" name="city"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}">City Error</span><br/>
 
     <label for="state">State: </label>
-    <input type="text" id="state" name="state"/><br/>
+    <input type="text" id="state" name="state"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}">State Error</span><br/>
 
     <label for="zip">Zip: </label>
-    <input type="text" id="zip" name="zip"/><br/>
+    <input type="text" id="zip" name="zip"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('zip')}"
+          th:errors="*{zip}">Zip Code Error</span><br/>
+
 
     <label for="phone">Phone: </label>
-    <input type="text" id="phone" name="phone"/><br/>
+    <input type="text" id="phone" name="phone"/>
+    <span class="validationError"
+          th:if="${#fields.hasErrors('phone')}"
+          th:errors="*{phone}">Phone Error</span><br/>
+
 
     <input type="submit" value="Register"/>
 </form>
