@@ -1,9 +1,12 @@
 package tacos.security;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tacos.User;
 import tacos.data.UserRepository;
 
 @Controller
@@ -24,8 +27,16 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String processRegistration(RegistrationForm form) {
-        userRepo.save(form.toUser(passwordEncoder));
+    public String processRegistration(RegistrationForm form, Model model) {
+        User user = form.toUser(passwordEncoder);
+
+        if (userRepo.findByUsername(user.getUsername()) != null) {
+            model.addAttribute("not_unique_username", true);
+            return "registration";
+        }
+
+        userRepo.save(user);
+
         return "redirect:/login";
     }
 

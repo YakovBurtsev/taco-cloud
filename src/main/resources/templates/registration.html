@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 
 <body>
@@ -12,7 +13,10 @@
 <form method="POST" th:action="@{/register}" id="registerForm">
 
     <label for="username">Username: </label>
-    <input type="text" id="username" name="username"/><br/>
+    <input type="text" id="username" name="username"/>
+    <span class="validationError"
+          th:if="${not_unique_username}">User with such name already exist!</span>
+    <br/>
 
     <label for="password">Password: </label>
     <input type="password" id="password" name="password"/><br/>
