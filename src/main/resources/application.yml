@@ -1,0 +1,24 @@
+taco:
+  orders:
+    pageSize: 10
+
+  discount:
+    codes:
+      abcdef: 10
+
+spring:
+  jpa:
+    open-in-view: false
+
+---
+spring:
+  profiles: prod
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tacocloud
+    username: tacouser
+    password: tacopassword
+
+logging:
+  level:
+    tacos: DEBUG
