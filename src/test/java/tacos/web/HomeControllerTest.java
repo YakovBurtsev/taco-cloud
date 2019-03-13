@@ -44,6 +44,9 @@ public class HomeControllerTest {
     @MockBean
     private PasswordEncoder passwordEncoder;
 
+    @MockBean
+    private OrderProps orderProps;
+
 
     @Test
     public void testHomePage() throws Exception {
