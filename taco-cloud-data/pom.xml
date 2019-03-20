@@ -16,7 +16,7 @@
 
         <dependency>
             <groupId>yaburtsev</groupId>
-            <artifactId>tacocloud-domain</artifactId>
+            <artifactId>taco-cloud-domain</artifactId>
             <version>${taco-cloud.version}</version>
         </dependency>
 
