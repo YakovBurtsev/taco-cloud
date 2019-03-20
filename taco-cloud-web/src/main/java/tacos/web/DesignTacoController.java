@@ -4,10 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
 import tacos.data.UserRepository;
+import tacos.domain.Ingredient;
+import tacos.domain.Ingredient.Type;
+import tacos.domain.Order;
+import tacos.domain.Taco;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -49,7 +57,7 @@ public class DesignTacoController {
     public void addAttributesToModel(Model model, Principal principal) {
         List<Ingredient> ingredients = ingredientRepo.findAll();
 
-        Type[] types = Ingredient.Type.values();
+        Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
