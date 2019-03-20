@@ -12,6 +12,7 @@
         <module>taco-cloud-domain</module>
         <module>taco-cloud-data</module>
         <module>taco-cloud-main</module>
+        <module>taco-cloud-security</module>
     </modules>
 
     <parent>

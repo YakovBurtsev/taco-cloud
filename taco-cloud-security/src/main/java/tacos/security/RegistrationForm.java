@@ -2,6 +2,7 @@ package tacos.security;
 
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import tacos.domain.User;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
