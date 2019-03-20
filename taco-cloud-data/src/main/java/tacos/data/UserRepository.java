@@ -1,7 +1,7 @@
 package tacos.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import tacos.User;
+import tacos.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
