@@ -6,13 +6,12 @@
     <groupId>yaburtsev</groupId>
     <artifactId>taco-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>tacocloud-domain</module>
-    </modules>
     <packaging>pom</packaging>
 
-    <name>taco-cloud</name>
-    <description>Taco Cloud Example</description>
+    <modules>
+        <module>tacocloud-domain</module>
+        <module>tacocloud-data</module>
+    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,6 +22,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <tacocloud.version>${project.version}</tacocloud.version>
     </properties>
 
 <!--
