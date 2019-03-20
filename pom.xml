@@ -11,6 +11,7 @@
     <modules>
         <module>taco-cloud-domain</module>
         <module>taco-cloud-data</module>
+        <module>taco-cloud-main</module>
     </modules>
 
     <parent>
@@ -99,14 +100,5 @@
 
     </dependencies>
 -->
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
