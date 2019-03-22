@@ -22,21 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/design", "/orders")
-                .access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**").access("permitAll")
 
                 .and()
-                .formLogin()
-                .loginPage("/login")
-
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-
-                .and()
                 .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .ignoringAntMatchers("/h2-console/**", "/ingredients/**", "/design/**", "/orders/**")
 
                 .and()
                 .headers()
