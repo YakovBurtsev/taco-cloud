@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/**").access("permitAll")
 
+                //todo:
                 .and()
                 .anonymous().authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")))
 
