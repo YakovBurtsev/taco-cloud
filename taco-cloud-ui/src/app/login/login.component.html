@@ -1,17 +1,11 @@
 <cloud-title>Sign in to Taco Cloud</cloud-title>
 
-<p style="font-weight: bold; color: red;">
-  The sign in and security features of this version of Taco Cloud are not
-  yet implemented. The forms presented below do absolutely nothing...yet.
-  Stay tuned.
-</p>
-
 <group-box title="Sign in">
-  <form>
+  <form (ngSubmit)="signIn()">
     <label for="username"><b>Username:</b></label><br/>
-    <input type="text" name="username" class="formField"/><br/>
+    <input type="text" name="username" class="formField" [(ngModel)]="model.username"/><br/>
     <label for="password"><b>Password:</b></label><br/>
-    <input type="password" name="password" class="formField"/><br/><br/>
+    <input type="password" name="password" class="formField" [(ngModel)]="model.password"/><br/><br/>
     <big-button label="Sign in"></big-button>
   </form>
 </group-box>
