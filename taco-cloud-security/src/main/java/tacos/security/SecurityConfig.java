@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    //Fixme: when login it return 403 http code
+    //fixme: login
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -27,13 +27,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS).permitAll() // needed for Angular/CORS
 
                 .antMatchers(HttpMethod.PATCH, "/ingredients").permitAll()
-                .antMatchers("/", "/**", "/login").access("permitAll")
+                .antMatchers("/", "/**").access("permitAll")
 
                 .antMatchers("/design/**", "/orders/**").access("hasRole('ROLE_USER')")
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/home")
 
                 .and()
                 .httpBasic()
@@ -45,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .csrf()
-                .ignoringAntMatchers("/h2-console/**", "/ingredients/**", "/design/**", "/orders/**")
+                .ignoringAntMatchers("/h2-console/**", "/ingredients/**", "/design/**", "/orders/**", "/login")
 
                 // Allow pages to be loaded in frames from the same origin; needed for H2-Console
                 .and()
