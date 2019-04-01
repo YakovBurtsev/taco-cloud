@@ -19,26 +19,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    //fixme: login
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll() // needed for Angular/CORS
-
-                .antMatchers(HttpMethod.PATCH, "/ingredients").permitAll()
-                .antMatchers("/", "/**").access("permitAll")
-
-                .antMatchers("/design/**", "/orders/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/ingredients/**", "/design/**", "/orders/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/", "/**").permitAll()
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/home")
-
-                .and()
-                .httpBasic()
-                .realmName("Taco Cloud")
 
                 .and()
                 .logout()
