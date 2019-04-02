@@ -24,7 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll() // needed for Angular/CORS
-                .antMatchers("/ingredients/**", "/design/**", "/orders/**").access("hasRole('ROLE_USER')")
+                .antMatchers("/ingredients/**", "/design/**", "/orders/**")
+                .permitAll() //fixme: need fix this and angular login
+                //.access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**").permitAll()
 
                 .and()
