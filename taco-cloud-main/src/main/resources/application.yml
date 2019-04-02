@@ -5,6 +5,9 @@ logging:
 spring:
   jpa:
     open-in-view: false
+  data:
+    rest:
+      base-path: /api
 
 taco:
   orders:

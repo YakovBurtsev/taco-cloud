@@ -14,7 +14,8 @@
         <module>taco-cloud-main</module>
         <module>taco-cloud-security</module>
         <module>taco-cloud-api</module>
-        <module>taco-cloud-ui</module>
+<!--fixme        <module>taco-cloud-ui</module>-->
+        <module>taco-cloud-restclient</module>
     </modules>
 
     <parent>
