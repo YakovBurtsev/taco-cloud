@@ -3,7 +3,6 @@ package tacos.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,6 +21,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .anyRequest().permitAll()
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin();
+/*        http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS).permitAll() // needed for Angular/CORS
                 .antMatchers(HttpMethod.POST, "/api/ingredients").permitAll()
@@ -48,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers()
                 .frameOptions()
                 .sameOrigin()
-        ;
+        ;*/
     }
 
     @Override

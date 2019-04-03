@@ -155,13 +155,7 @@ public class TacoCloudClient {
     }
 
     public Ingredient addIngredient(Ingredient ingredient) {
-        String ingredientsUrl = traverson
-                .follow("ingredients")
-                .asLink()
-                .getHref();
-        return rest.postForObject(ingredientsUrl,
-                ingredient,
-                Ingredient.class);
+        return createIngredient(ingredient);
     }
 
     public Iterable<Taco> getRecentTacosWithTraverson() {

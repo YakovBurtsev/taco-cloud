@@ -29,8 +29,6 @@ public class RestExamples {
         return new RestTemplate();
     }
 
-    //fixme: all rest template examples
-/*
     @Bean
     public CommandLineRunner fetchIngredients(TacoCloudClient tacoCloudClient) {
         return args -> {
@@ -103,7 +101,6 @@ public class RestExamples {
             log.info("AFTER:  " + after);
         };
     }
-*/
 
     //
     // Traverson examples
@@ -111,9 +108,7 @@ public class RestExamples {
 
     @Bean
     public Traverson traverson() {
-        Traverson traverson = new Traverson(
-                URI.create("http://localhost:8080/api"), MediaTypes.HAL_JSON);
-        return traverson;
+        return new Traverson(URI.create("http://localhost:8080/api"), MediaTypes.HAL_JSON);
     }
 
     @Bean
