@@ -8,7 +8,7 @@ spring:
 
 taco:
   orders:
-    pageSize: 10
+    page-size: 10
 
 ---
 spring:
