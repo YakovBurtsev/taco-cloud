@@ -12,9 +12,7 @@
         <module>taco-cloud-domain</module>
         <module>taco-cloud-data</module>
         <module>taco-cloud-main</module>
-        <module>taco-cloud-security</module>
         <module>taco-cloud-api</module>
-<!--fixme        <module>taco-cloud-ui</module>-->
         <module>taco-cloud-restclient</module>
     </modules>
 

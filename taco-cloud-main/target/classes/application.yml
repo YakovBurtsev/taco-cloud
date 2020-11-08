@@ -1,0 +1,27 @@
+logging:
+  level:
+    tacos: DEBUG
+
+spring:
+  jpa:
+    open-in-view: false
+  data:
+    rest:
+      base-path: /api
+
+taco:
+  orders:
+    pageSize: 10
+
+---
+spring:
+  profiles: prod
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tacocloud
+    username: tacouser
+    password: tacopassword
+
+logging:
+  level:
+    tacos: WARN

@@ -4,7 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
 import tacos.data.UserRepository;
@@ -22,7 +21,6 @@ public class DevConfig {
     @Bean
     public CommandLineRunner dataLoader(IngredientRepository ingredientRepository,
                                         UserRepository userRepository,
-                                        PasswordEncoder encoder,
                                         TacoRepository tacoRepository) {
         return args -> {
             Ingredient flourTortilla = new Ingredient("FLTO", "Flour Tortilla", Type.WRAP);
@@ -47,7 +45,7 @@ public class DevConfig {
             ingredientRepository.save(salsa);
             ingredientRepository.save(sourCream);
 
-            userRepository.save(new User("yakov", encoder.encode("yakov"), "Yakov Burtsev",
+            userRepository.save(new User("yakov", "yakov", "Yakov Burtsev",
                     "Some street", "Some city", "Some state", "123456", "123-123-1234"));
 
             Taco taco1 = new Taco();
