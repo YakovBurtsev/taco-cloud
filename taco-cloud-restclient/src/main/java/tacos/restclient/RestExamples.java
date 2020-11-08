@@ -33,7 +33,7 @@ public class RestExamples {
     public CommandLineRunner fetchIngredients(TacoCloudClient tacoCloudClient) {
         return args -> {
             log.info("----------------------- GET -------------------------");
-            log.info("GETTING INGREDIENT BY IDE");
+            log.info("GETTING INGREDIENT BY ID");
             log.info("Ingredient:  " + tacoCloudClient.getIngredientById("CHED"));
             log.info("GETTING ALL INGREDIENTS");
             List<Ingredient> ingredients = tacoCloudClient.getAllIngredients();
